@@ -1,0 +1,12 @@
+[package]
+name = "healthcheck"
+version = "0.1.0"
+authors = ["Tobi Fuhrimann <tobias.fuhrimann@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+hyper = "0.12"
+
+[profile.release]
+opt-level = "z"
+lto = true
