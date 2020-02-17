@@ -5,7 +5,8 @@ authors = ["Tobi Fuhrimann <tobias.fuhrimann@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-hyper = "0.12"
+hyper = "0.13"
+tokio = { version = "0.2", features = ["full"] }
 
 [profile.release]
 opt-level = "z"
