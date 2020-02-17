@@ -1,10 +1,11 @@
 # Healthcheck
 
 [![Build Status](https://img.shields.io/travis/mastertinner/healthcheck.svg?style=flat-square)](https://travis-ci.org/mastertinner/healthcheck)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fmastertinner%2Fhealthcheck%2Fbadge&style=flat-square)](https://github.com/mastertinner/healthcheck/actions)
 [![Docker Build](https://img.shields.io/docker/build/mastertinner/healthcheck.svg?style=flat-square)](https://hub.docker.com/r/mastertinner/healthcheck)
 
 A base image for minimal Docker images. It is an extension of `scratch` that contains a built in HTTP health check and encourages non-privileged execution.
-This image only adds about 3.6M to `scratch` and is intended for running HTTP services written in languages that compile to a binary format (e.g. [Go](https://golang.org) or [Rust](https://www.rust-lang.org)).
+This image only adds about 2.8M to `scratch` and is intended for running HTTP services written in languages that compile to a binary format (e.g. [Go](https://golang.org) or [Rust](https://www.rust-lang.org)).
 
 ## Advantages
 
@@ -42,7 +43,7 @@ lto = true
 FROM golang:1 AS builder
 WORKDIR /usr/src/myapp
 COPY . .
-RUN CGO_ENABLED=0 go build -ldflags="-s -w" -a -installsuffix cgo -o bin/clong ./cmd/clong
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -a -installsuffix cgo -o bin/myapp ./cmd/myapp
 
 FROM healthcheck:latest
 WORKDIR /usr/myapp
