@@ -6,21 +6,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Rust
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-          components: rustfmt, clippy
-      - name: Format
+          components: rustfmt
+      - name: Format code
         uses: actions-rs/cargo@v1
         with:
           command: fmt
           args: --all -- --check
-      - name: Lint
-        uses: actions-rs/cargo@v1
+      - name: Lint code
+        uses: actions-rs/clippy-check@v1
         with:
-          command: clippy
+          token: ${{ secrets.GITHUB_TOKEN }}
           args: --all-features --all-targets -- -D warnings
+      - name: Security audit dependencies
+        uses: actions-rs/audit-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Test
         uses: actions-rs/cargo@v1
         with:

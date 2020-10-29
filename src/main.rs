@@ -14,11 +14,11 @@ async fn main() {
         Err(_) => String::from(""),
     };
 
+    let client = Client::new();
+
     let url = format!("http://localhost:{}{}", port, path)
         .parse()
         .unwrap();
-
-    let client = Client::new();
     let res = client.get(url).await;
 
     res.map(|res| {
