@@ -1,8 +1,8 @@
 # Healthcheck
 
-[![Build Status](https://img.shields.io/travis/mastertinner/healthcheck.svg?style=flat-square)](https://travis-ci.org/mastertinner/healthcheck)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fmastertinner%2Fhealthcheck%2Fbadge&style=flat-square)](https://github.com/mastertinner/healthcheck/actions)
-[![Docker Build](https://img.shields.io/docker/build/mastertinner/healthcheck.svg?style=flat-square)](https://hub.docker.com/r/mastertinner/healthcheck)
+[![Build Status](https://img.shields.io/travis/cloudlena/healthcheck.svg?style=flat-square)](https://travis-ci.org/cloudlena/healthcheck)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcloudlena%2Fhealthcheck%2Fbadge&style=flat-square)](https://github.com/cloudlena/healthcheck/actions)
+[![Docker Build](https://img.shields.io/docker/build/cloudlena/healthcheck.svg?style=flat-square)](https://hub.docker.com/r/cloudlena/healthcheck)
 
 A base image for minimal Docker images. It is an extension of `scratch` that contains a built in HTTP health check and encourages non-privileged execution.
 This image only adds about 2.8M to `scratch` and is intended for running HTTP services written in languages that compile to a binary format (e.g. [Go](https://golang.org) or [Rust](https://www.rust-lang.org)).
@@ -22,7 +22,7 @@ WORKDIR /usr/src/myapp
 COPY . .
 RUN cargo build --release
 
-FROM mastertinner/healthcheck:latest
+FROM cloudlena/healthcheck:latest
 WORKDIR /usr/myapp
 COPY --from=builder /usr/src/app/target/release/myapp .
 EXPOSE 8080
