@@ -9,6 +9,7 @@ async fn main() {
         Ok(p) => p,
         Err(_) => String::from("8080"),
     };
+
     let path = match env::var("HEALTHCHECK_PATH") {
         Ok(p) => p,
         Err(_) => String::from(""),
