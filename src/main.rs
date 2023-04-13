@@ -10,16 +10,11 @@ async fn main() {
         Err(_) => String::from("8080"),
     };
 
-    let path = match env::var("HEALTHCHECK_PATH") {
-        Ok(p) => p,
-        Err(_) => String::from(""),
-    };
+    let path = env::var("HEALTHCHECK_PATH").unwrap_or_default();
 
     let client = Client::new();
 
-    let url = format!("http://localhost:{}{}", port, path)
-        .parse()
-        .unwrap();
+    let url = format!("http://localhost:{port}{path}").parse().unwrap();
     let res = client.get(url).await;
 
     res.map(|res| {
