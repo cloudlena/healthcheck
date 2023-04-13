@@ -12,14 +12,12 @@ async fn main() {
 
     let path = match env::var("HEALTHCHECK_PATH") {
         Ok(p) => p,
-        Err(_) => String::from(""),
+        Err(_) => String::new(),
     };
 
     let client = Client::new();
 
-    let url = format!("http://localhost:{}{}", port, path)
-        .parse()
-        .unwrap();
+    let url = format!("http://localhost:{port}{path}").parse().unwrap();
     let res = client.get(url).await;
 
     res.map(|res| {
