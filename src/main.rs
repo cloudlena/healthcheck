@@ -1,7 +1,7 @@
 use std::env;
 use std::process::exit;
 
-use hyper::{http::StatusCode, Client};
+use hyper::{Client, http::StatusCode};
 
 #[tokio::main]
 async fn main() {
